@@ -8,17 +8,5 @@ if (environment.production) {
   enableProdMode();
 }
 
-interface SquareConfig {
-  color: string;
-  width?: number;
-  readonly x: number;
-  [propName: string]: any;
-  readonly [index: number]: string;
-}
-
-interface SearchFunc {
-  (source: string, subString: string): boolean;
-}
-
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
