@@ -4,6 +4,9 @@
     <label>id: </label>{{hero.id}}</div>
   <div>
     <label>name: </label>
+    <img id="headImg" [src]="imgsrc" alt="">
+    <button id="switch" [disabled]="isUnchanged" (click)="trunUnchanged()">Cancel is disabled</button>
+    <button (click)="trunUnchanged()">btn</button>
     <input [(ngModel)]="hero.name" placeholder="name" />
   </div>
   <button (click)="goBack()">Back</button>
