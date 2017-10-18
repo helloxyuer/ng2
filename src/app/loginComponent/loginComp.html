@@ -1,0 +1,36 @@
+<div class="login_main_box">
+  <div class="sign">
+    <div class="login_logo">
+      <div class="logo-img"></div>
+    </div>
+    <div class="middle">
+      <div class="middlemain">
+        <div >
+          <input
+            type="text"
+            class="loginInput"
+            placeholder="输入大陆地区手机号"
+            [(ngModel)]="userPhone"
+            (focus)="phoneFocus()"
+            (onkeyup)="checkPhone()">
+        </div>
+        <div>
+          <input
+            type="text"
+            class="loginInput"
+            placeholder="输入密码（2-10位任意字符，区分大小写）"
+            maxlength="10"
+            [(ngModel)]="userPassword">
+        </div>
+        <input
+          type="button"
+          value="登录"
+          (click)="goLogin()">
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div style="opacity: 0.9">中国·杭州运脉科技有限公司 ©2017 &nbsp;&nbsp;&nbsp;版权所有</div>
+  </div>
+</div>
