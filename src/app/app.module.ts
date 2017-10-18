@@ -12,6 +12,10 @@ import { PageNotFoundComponent } from './PageNotFound.component';
 import { HeroService } from './hero.service';
 
 import { AppRoutingModule } from './app-routing.module';
+
+import { PhoneInputDirective } from './directive/phoneInput';
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,7 +29,8 @@ import { AppRoutingModule } from './app-routing.module';
     DashboardComponent,
     HeroDetailComponent,
     HeroesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PhoneInputDirective
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]
