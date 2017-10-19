@@ -1,19 +1,24 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Directive({
   selector: '[appPhoneInput]'
 })
 export class PhoneInputDirective {
 
-  constructor(private el: ElementRef) { }
+  constructor(public control: NgModel, private el: ElementRef) { }
 
   @Input('appPhoneInput') phoneNumber: string;
 
-  @HostListener('onchange') onchange() {
-    this.checkPhoneNumber(this.phoneNumber);
+  @HostListener('keyup') update($event) {
+    console.log(this.control)
+    console.log(this.el)
+    this.el.nativeElement.style.border = "1px solid red";
+    this.checkPhoneNumber($event);
   }
 
-  private checkPhoneNumber(phoneNumber: string) {
-    console.log(phoneNumber);
+  checkPhoneNumber(phoneNumber: string) {
+    console.log('123321');
+    this.control.viewToModelUpdate('123');
   }
 }

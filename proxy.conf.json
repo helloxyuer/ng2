@@ -1,0 +1,6 @@
+{
+  "/unicron": {
+    "target": "http://api.test2.logibeat.com",
+    "secure": false
+  }
+}
