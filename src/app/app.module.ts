@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SetHeaderInterceptor } from './js/httpInterceptor';
 
 import { LoginComponent } from './loginComponent/loginComp';
 import { AppComponent } from './appComponent/appComp';
@@ -32,7 +33,14 @@ import { PhoneInputDirective } from './directive/phoneInput';
     PageNotFoundComponent,
     PhoneInputDirective
   ],
-  providers: [HeroService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SetHeaderInterceptor,
+      multi: true,
+    },
+    SetHeaderInterceptor,
+    HeroService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

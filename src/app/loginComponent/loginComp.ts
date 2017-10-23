@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SetHeaderInterceptor } from '../js/httpInterceptor';
 
 @Component({
   selector: 'app-login-comp',
@@ -12,7 +13,7 @@ export class LoginComponent {
   @Input() userPhone: string;
   codelogin: Boolean = false;
   results = '';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient , private headerIntor: SetHeaderInterceptor) {}
   switchLoginWay(way: Number): void {
     this.codelogin = (way === 1);
   }
@@ -24,15 +25,23 @@ export class LoginComponent {
   }
   goLogin(): void {
     const params = {
-      loginName : 18814887500,
-      password : 123456
-    }
+      loginName : '18814887500',
+      password : '123456'
+    };
     this.http.post('/unicron/ent/User/api/Account/authLogin.htm', params).subscribe(data => {
-      this.results = data['results'];
+      console.log(data);
+    }, error => {
+      console.log('err');
     });
   }
-  pwdFocus(): void {
-
+  EnterEnt(data): void {
+    const entMsg = data.entVos[0];
+    const thisdata = {
+      entId: entMsg.entId,
+    };
+    this.http.post('/unicron/ent/User/api/Account/affirmEnt.htm', thisdata).subscribe(res => {
+      console.log(res);
+    });
   }
 }
 
