@@ -1,3 +1,7 @@
 export const baseInfo = {
-  entId: '123'
+  entId: '',
+  name: '',
+  baseUserId: '',
+  mobile: '',
+  logo: ''
 }
