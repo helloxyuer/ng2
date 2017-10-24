@@ -11,14 +11,14 @@ export class PhoneInputDirective {
   @Input('appPhoneInput') phoneNumber: string;
 
   @HostListener('keyup') update($event) {
-    console.log(this.control)
-    console.log(this.el)
-    this.el.nativeElement.style.border = "1px solid red";
-    this.checkPhoneNumber($event);
+    console.log(this.control);
+    console.log($event);
+    this.checkPhoneNumber(this.control.model);
+    // this.el.nativeElement.style.border = "1px solid red";
   }
 
   checkPhoneNumber(phoneNumber: string) {
-    console.log('123321');
-    this.control.viewToModelUpdate('123');
+    phoneNumber = phoneNumber.replace(/\D+/g, '');
+    this.control.viewToModelUpdate(phoneNumber);
   }
 }

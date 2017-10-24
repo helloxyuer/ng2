@@ -2,19 +2,22 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SetHeaderInterceptor } from './js/httpInterceptor';
-
+/*http拦截器*/
+import { NoopInterceptor, SetHeaderInterceptor } from './js/httpInterceptor';
+/*组件*/
 import { LoginComponent } from './loginComponent/loginComp';
 import { AppComponent } from './appComponent/appComp';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroesComponent } from './heroes.component';
 import { DashboardComponent } from './dashboard.component';
 import { PageNotFoundComponent } from './PageNotFound.component';
+/*公共服务*/
 import { HeroService } from './hero.service';
-
+/*公用模块*/
 import { AppRoutingModule } from './app-routing.module';
-
+/*属性指令*/
 import { PhoneInputDirective } from './directive/phoneInput';
+
 
 
 @NgModule({
@@ -36,11 +39,17 @@ import { PhoneInputDirective } from './directive/phoneInput';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
+      useClass: NoopInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: SetHeaderInterceptor,
       multi: true,
     },
     SetHeaderInterceptor,
-    HeroService],
+    HeroService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
