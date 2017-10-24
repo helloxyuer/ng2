@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpData } from '../js/common';
 
 @Component({
   selector: 'app-login-comp',
@@ -10,7 +10,7 @@ export class LoginComponent {
   @Input() userPassword = '123456';
   @Input() userPhone = '18814887500';
   codelogin: Boolean = false;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpData) {}
   switchLoginWay(way: Number): void {
     this.codelogin = (way === 1);
   }
@@ -18,11 +18,11 @@ export class LoginComponent {
   phoneFocus(): void { }
   goLogin(): void {
     const body = {
-      'loginName' : this.userPassword,
-      'password' : this.userPhone
+      'loginName' : this.userPhone,
+      'password' : this.userPassword
     };
-    this.http.post('/unicron/ent/User/api/Account/authLogin.htm', body).subscribe(data => {
-      console.log(data);
+    this.http.post('/unicron/ent/User/api/Account/authLogin.htm', body).subscribe(res => {
+      this.EnterEnt(res.data);
     }, error => {
       console.log('err');
     });

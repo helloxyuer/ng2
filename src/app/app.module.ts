@@ -15,6 +15,8 @@ import { PageNotFoundComponent } from './PageNotFound.component';
 import { HeroService } from './hero.service';
 /*公用模块*/
 import { AppRoutingModule } from './app-routing.module';
+import { HttpData } from './js/common';
+import { baseInfo } from './js/appconfig';
 /*属性指令*/
 import { PhoneInputDirective } from './directive/phoneInput';
 
@@ -47,8 +49,13 @@ import { PhoneInputDirective } from './directive/phoneInput';
       useClass: SetHeaderInterceptor,
       multi: true,
     },
+    {
+      provide: baseInfo,
+      useValue: baseInfo,
+    },
     SetHeaderInterceptor,
     HeroService,
+    HttpData,
   ],
   bootstrap: [AppComponent]
 })

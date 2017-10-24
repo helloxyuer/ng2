@@ -1,7 +1,5 @@
 import {Injectable } from '@angular/core';
 import {Observable } from 'rxjs/observable';
-import Qs from 'qs';
-import {common} from './common';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx' ;
 
@@ -23,6 +21,8 @@ export class SetHeaderInterceptor implements HttpInterceptor {
       'ClientSystem': 'Web',
     });
     const authReq = req.clone({headers: headers});
-    return next.handle(authReq);
+    return next.handle(authReq).do(event => {
+      console.log( event);
+    });
   }
 }

@@ -1,6 +1,10 @@
-import {HttpClient } from '@angular/common/http';
-export let common = {
-  turnbody: function turnBody(obj) {
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpRequest} from '@angular/common/http';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+
+export const common = {
+  turnbody: function turnBody(obj: object) {
     let query = '';
     let name, value, fullSubName, subName, subValue, innerObj, i;
     for ( name in obj) {
@@ -29,9 +33,12 @@ export let common = {
 
     return query.length ? query.substr(0, query.length - 1) : query;
   },
-
 };
 
-export let dohttp = {
-
+@Injectable()
+export class HttpData extends HttpClient {
+  post(url: string, body?: any, options?: any): Observable<any> {
+    body = common.turnbody(body);
+    return super.post(url, body, options);
+  }
 }
