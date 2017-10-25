@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule , HTTP_INTERCEPTORS } from '@angular/common/http';
 /*http拦截器*/
-import { NoopInterceptor, SetHeaderInterceptor } from './js/httpInterceptor';
+import { NoopInterceptor } from './js/httpInterceptor';
 /*组件*/
 import { LoginComponent } from './loginComponent/loginComp';
 import { AppComponent } from './appComponent/appComp';
@@ -45,15 +45,9 @@ import { PhoneInputDirective } from './directive/phoneInput';
       multi: true,
     },
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: SetHeaderInterceptor,
-      multi: true,
-    },
-    {
       provide: baseInfo,
       useValue: baseInfo,
     },
-    SetHeaderInterceptor,
     HeroService,
     HttpData,
   ],

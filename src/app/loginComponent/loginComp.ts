@@ -21,15 +21,12 @@ export class LoginComponent {
       'loginName' : this.userPhone,
       'password' : this.userPassword
     };
-    this.http.post('/unicron/ent/User/api/Account/authLogin.htm', body).subscribe(res => {
-      console.log(baseInfo);
-      baseInfo.baseUserId = res.data.baseUserId;
-      baseInfo.mobile = res.data.baseUserId;
-      baseInfo.name = res.data.myName;
-      baseInfo.logo = res.data.logo;
-      this.EnterEnt(res.data);
-    }, error => {
-      console.log('err');
+    this.http.postFrom('/unicron/ent/User/api/Account/authLogin.htm', body).subscribe(res => {
+      baseInfo.baseUserId = res['data'].baseUserId;
+      baseInfo.userMobile = res['data'].baseUserId;
+      baseInfo.userName = res['data'].myName;
+      baseInfo.userLogo = res['data'].logo;
+      this.EnterEnt(res['data']);
     });
   }
   EnterEnt(data): void {
@@ -38,8 +35,7 @@ export class LoginComponent {
     const thisdata = {
       entId: entMsg.entId,
     };
-    this.http.post('/unicron/ent/User/api/Account/affirmEnt.htm', thisdata).subscribe(res => {
-      console.log(res);
+    this.http.postFrom('/unicron/ent/User/api/Account/affirmEnt.htm', thisdata).subscribe(res => {
     });
   }
 }

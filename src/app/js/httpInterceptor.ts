@@ -7,7 +7,9 @@ import 'rxjs/Rx' ;
 export class NoopInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('send begin...');
-    return next.handle(req);
+    return next.handle(req).do(event => {
+      console.log('event');
+    });
   }
 }
 
@@ -21,8 +23,6 @@ export class SetHeaderInterceptor implements HttpInterceptor {
       'ClientSystem': 'Web',
     });
     const authReq = req.clone({headers: headers});
-    return next.handle(authReq).do(event => {
-      console.log( event);
-    });
+    return next.handle(authReq);
   }
 }
