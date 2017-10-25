@@ -8,13 +8,14 @@ export class PhoneInputDirective {
 
   constructor(public control: NgModel, private el: ElementRef) { }
 
-  @HostListener('keyup', ['$event']) update(event) {
+  /*@HostListener('keyup', ['$event']) update(event) {
     this.checkPhoneNumber(event.target.value);
-  }
+  }*/
 
-  checkPhoneNumber(phoneNumber: string) {
-    phoneNumber = phoneNumber.replace(/\D+/g, '');
-    console.log(phoneNumber);
-    this.control.viewToModelUpdate(phoneNumber);
+  @HostListener('keyup', ['$event']) input(event) {
+    const num = event.target.value;
+    const afternum = num.replace(/\D+/g, '');
+    this.control.viewToModelUpdate(afternum);
+    event.target.value = afternum;
   }
 }
