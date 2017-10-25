@@ -8,7 +8,7 @@ import { baseInfo } from '../js/appconfig';
   styleUrls: ['./loginComp.css'],
 })
 export class LoginComponent {
-  @Input() userPassword = '123456';
+  @Input() userPassword = '1';
   @Input() userPhone = '18814887500';
   codelogin: Boolean = false;
   constructor(private http: HttpData, private  router: Router) {}
@@ -18,11 +18,13 @@ export class LoginComponent {
       'password' : this.userPassword
     };
     this.http.postFrom('/unicron/ent/User/api/Account/authLogin.htm', body).subscribe(res => {
-      baseInfo.baseUserId = res['data'].baseUserId;
-      baseInfo.userMobile = res['data'].baseUserId;
-      baseInfo.userName = res['data'].myName;
-      baseInfo.userLogo = res['data'].logo;
-      this.EnterEnt(res['data']);
+      if (res.suc) {
+        baseInfo.baseUserId = res['data'].baseUserId;
+        baseInfo.userMobile = res['data'].baseUserId;
+        baseInfo.userName = res['data'].myName;
+        baseInfo.userLogo = res['data'].logo;
+        this.EnterEnt(res['data']);
+      }
     });
   }
   EnterEnt(data): void {

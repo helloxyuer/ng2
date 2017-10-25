@@ -12,6 +12,9 @@ export class NoopInterceptor implements HttpInterceptor {
       if (event instanceof HttpResponse) {
         console.log(event.body.data);
         const elapsed = Date.now() - started;
+        if (!event.body.suc) {
+          alert(event.body.message);
+        }
         console.log(`send end------- ${req.urlWithParams} ------- ${elapsed} ms.`);
       }
     });
