@@ -1,0 +1,23 @@
+.menu_index_north{
+  width:100%;
+  background-color: #1d273a;
+  color: #ffffff;
+}
+.menu_log{
+  display: inline-block;
+}
+.menu_tabs{
+  display: inline-block;
+}
+.aTab>span{
+  display: inline-block;
+  color: #fff;
+  opacity: .4;
+  cursor: pointer;
+  float: left;
+  font-size: 18px;
+  padding: 0 10px;
+}
+.common-use-l{
+  float: right;
+}

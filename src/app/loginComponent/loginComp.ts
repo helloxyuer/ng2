@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { HttpData } from '../js/common';
+import { Router } from '@angular/router';
+import { HttpData } from '../js/httpMod';
 import { baseInfo } from '../js/appconfig';
 @Component({
   selector: 'app-login-comp',
@@ -10,12 +11,7 @@ export class LoginComponent {
   @Input() userPassword = '123456';
   @Input() userPhone = '18814887500';
   codelogin: Boolean = false;
-  constructor(private http: HttpData) {}
-  switchLoginWay(way: Number): void {
-    this.codelogin = (way === 1);
-  }
-
-  phoneFocus(): void { }
+  constructor(private http: HttpData, private  router: Router) {}
   goLogin(): void {
     const body = {
       'loginName' : this.userPhone,
@@ -32,10 +28,15 @@ export class LoginComponent {
   EnterEnt(data): void {
     const entMsg = data.entVos[0];
     baseInfo.entId = entMsg.entId;
+    baseInfo.entLogo = entMsg.imgPath;
+    baseInfo.entName = entMsg.name;
     const thisdata = {
       entId: entMsg.entId,
     };
     this.http.postFrom('/unicron/ent/User/api/Account/affirmEnt.htm', thisdata).subscribe(res => {
+      if (res.suc) {
+        this.router.navigate(['/index']);
+      }
     });
   }
 }

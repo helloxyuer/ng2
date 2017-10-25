@@ -1,0 +1,29 @@
+<div class="menu_index_north">
+    <div class="menu_log">
+      <img class="cop_log" width="50px" height="50px" [src]="entImgPath">
+      <span id="entName" class="title" [title]="entName">{{entName}}</span>
+    </div>
+    <nav class="menu_tabs">
+      <a class="aTab"
+         routerLinkActive="active"
+         routerLink="/crisis-center"><span>动态</span></a>
+      <a class="aTab"
+         routerLinkActive="active"
+         routerLink="/crisis-center"><span>业务管理</span></a>
+      <a class="aTab"
+         routerLinkActive="active"
+         routerLink="/crisis-center"><span>运力管理</span></a>
+      <a class="aTab"
+         routerLinkActive="active"
+         routerLink="/crisis-center"><span>合作企业</span></a>
+      <a class="aTab"
+         routerLinkActive="active"
+         routerLink="/crisis-center"><span>系统管理</span></a>
+    </nav>
+    <div  class="common-use-l">
+      <a id="aUerName" class="user-name-l">{{entAdmin}}</a>
+      <a (click)="loginOut()">退出登录</a>
+    </div>
+  </div>
+<router-outlet></router-outlet>
+

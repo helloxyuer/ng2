@@ -60,9 +60,8 @@
 
 .sign .middle {
   width: 380px;
-  padding-bottom: 20px;
+  padding: 20px 0;
   background-color: #fff;
-  margin-top: 20px;
   border: 1px solid #cecece;
   position: relative;
   border-radius: 6px;

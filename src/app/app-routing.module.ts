@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './loginComponent/loginComp';
+import { NavComponent } from './navComponent/navComp';
 import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { PageNotFoundComponent } from './PageNotFound.component';
@@ -9,6 +10,7 @@ import { PageNotFoundComponent } from './PageNotFound.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
+  { path: 'index',  component: NavComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes',     component: HeroesComponent },
   { path: '**', component: PageNotFoundComponent }
