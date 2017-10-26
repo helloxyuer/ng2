@@ -17,13 +17,10 @@ import { HeroService } from './hero.service';
 /*公用模块*/
 import { AppRoutingModule } from './app-routing.module';
 import { HttpData } from './js/httpMod';
-import { common } from './js/common';
-import { baseInfo } from './js/appconfig';
+import { commonDi , common } from './js/common';
+import { appconfigDi, baseInfo } from './js/appconfig';
 /*属性指令*/
 import { PhoneInputDirective } from './directive/phoneInput';
-
-
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -49,10 +46,10 @@ import { PhoneInputDirective } from './directive/phoneInput';
     },
     {
       provide: baseInfo,
-      useValue: baseInfo,
+      useValue: appconfigDi,
     },
     {
-      provide: common,
+      provide: commonDi,
       useValue: common,
     },
     HeroService,

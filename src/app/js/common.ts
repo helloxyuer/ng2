@@ -1,3 +1,5 @@
+import { InjectionToken } from '@angular/core';
+
 export const common = {
   turnbody: function turnBody(obj: object) {
     let query = '';
@@ -39,3 +41,5 @@ export const common = {
     return val ? val : '';
   }
 };
+/*非类依赖定义令牌*/
+export const commonDi = new InjectionToken<any>('commonObj');

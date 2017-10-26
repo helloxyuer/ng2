@@ -1,4 +1,6 @@
 import { common } from './common';
+import { InjectionToken } from '@angular/core';
+
 export const baseInfo = {
   set entId(data: string){
     common.setSession('entId', data);
@@ -43,3 +45,6 @@ export const baseInfo = {
     return common.getSession('entName');
   },
 }
+
+/*非类依赖定义令牌*/
+export const appconfigDi = new InjectionToken<any>('appconfig');

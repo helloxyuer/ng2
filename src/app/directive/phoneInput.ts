@@ -14,6 +14,7 @@ export class PhoneInputDirective {
 
   @HostListener('keyup', ['$event']) input(event) {
     const num = event.target.value;
+    console.log(num);
     const afternum = num.replace(/\D+/g, '');
     this.control.viewToModelUpdate(afternum);
     event.target.value = afternum;
